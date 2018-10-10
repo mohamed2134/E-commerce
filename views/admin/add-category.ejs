@@ -1,0 +1,20 @@
+
+<% layout('../layout') %>
+
+
+<div class="row align-items-center justify-content-center p-5 ">
+    <h1>Add New Category</h1>
+</div>
+<div class="row align-items-center justify-content-center flex-column " >
+    <%- partial('../component/alert') %>
+    <%- partial('../component/alert-success') %>
+    <form  method="post" action="/add-category" class="w-50">
+
+        <div class="form-group">
+            <label for="name">Enter Name</label>
+            <input type="text" class="form-control"  name="name"  id="name" aria-describedby="emailHelp" placeholder="Enter name">
+        </div>
+        <button type="submit" class="btn btn-success btn-lg w-50">Add</button>
+    </form>
+
+</div>

@@ -1,0 +1,10 @@
+<%  if(errors){
+errors.forEach((errmes)=>{
+%>
+    <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
+        <%= errmes%>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<%});}%>
