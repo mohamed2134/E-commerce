@@ -1,63 +1,67 @@
 <% layout('../layout') %>
 <div class="container single_product_container">
-<div class="row">
-    <div class="col-lg-7">
-        <div class="single_product_pics">
-            <div class="row">
-                <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-                    <div class="single_product_thumbnails">
-                        <ul class="singl-product-img-small" >
-                            <li class="active" ><img class="singl-product-img-small" src="<%= product.image[0] %>" alt="" data-image="<%= product.image[0] %>"></li>
-                            <li ><img src="<%= product.image[1] %>" alt="" data-image="<%= product.image[1] %>"></li>
-                            <li><img src="<%= product.image[2] %>" alt="" data-image="<%= product.image[2] %>"></li>
-                        </ul>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="single_product_pics">
+                <div class="row">
+                    <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+                        <div class="single_product_thumbnails">
+                            <ul class="singl-product-img-small">
+                                <li class="active"><img class="singl-product-img-small" src="<%= product.image[0] %>"
+                                                        alt="" data-image="<%= product.image[0] %>"></li>
+                                <li><img src="<%= product.image[1] %>" alt="" data-image="<%= product.image[1] %>"></li>
+                                <li><img src="<%= product.image[2] %>" alt="" data-image="<%= product.image[2] %>"></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-9 image_col order-lg-2 order-1">
-                    <div class="single_product_image">
-                        <div class="single_product_image_background" style="background-image:url(<%= product.image[0] %>)"></div>
+                    <div class="col-lg-9 image_col order-lg-2 order-1">
+                        <div class="single_product_image">
+                            <div class="single_product_image_background"
+                                 style="background-image:url(<%= product.image[0] %>)"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-5">
-        <div class="product_details">
-            <div class="product_details_title">
-                <h2><%= product.name %></h2>
-                <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-            </div>
-            <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                <span class="ti-truck"></span><span>free delivery in cairo,sharqua,mansura </span>
-            </div>
-            <div class="original_price"><%= product.price %></div>
-            <div class="product_price"><%= product.price-424 %></div>
-            <ul class="star_rating">
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-            </ul>
-            <div class="product_color">
-                <span>Select Color:</span>
-                <ul>
-                    <li style="background: #e54e5d"></li>
-                    <li style="background: #252525"></li>
-                    <li style="background: #60b3f3"></li>
+        <div class="col-lg-5">
+            <div class="product_details">
+                <div class="product_details_title">
+                    <h2><%= product.name %></h2>
+                    <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque
+                        diam dolor, elementum etos lobortis des mollis ut...</p>
+                </div>
+                <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+                    <span class="ti-truck"></span><span>free delivery in Egypt </span>
+                </div>
+                <div class="original_price"><%= product.price %></div>
+                <div class="product_price"><%= product.price - 424 %></div>
+                <ul class="star_rating d-none">
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                 </ul>
+
+                <form method="post" action="/product-cart/<%= product._id %>" >
+                    <div class="form-product-option   d-flex flex-column  ">
+                        <div class="form-group">
+                            <label  class=" col-form-label">Select Color :</label>
+                            <select class=" color-v form-control d-inline  form-control-sm" name="color">
+                                <option style="background-color: #0b2e13;" value="red">red</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Select number :</label>
+                            <input type="number" class=" quantity d-inline form-control" min="1" name="quantity" value="1">
+                        </div>
+                        <button class="red_button add_to_cart_button border-0" type="submit"> add to cart</button>
+
+                    </div>
+                </form>
+
             </div>
-            <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-                <span>Quantity:</span>
-                <div class="quantity_selector">
-                    <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                    <span id="quantity_value">1</span>
-                    <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                </div>
-                <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
-                <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
-            </div>
+
         </div>
     </div>
-</div>
 </div>

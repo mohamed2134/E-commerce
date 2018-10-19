@@ -1,0 +1,38 @@
+<% layout('../layout') %>
+
+
+
+<div class="container pt-2 ">
+
+    <div class="row">
+        <%if(results && results.length>0){%>
+        <%for(let i=0;i<results.length;i++){%>
+
+            <div class="col-md-3 product-item mt-3  ">
+                <a href="<%= '/product/'+results[i]._id%>">
+                    <div class="img-thumbnail img">
+                        <img  class="w-100 " src="<%= results[i].image[0]%>">
+
+                        <div class="caption">
+                            <h6><%= results[i].name%></h6>
+                            <div class="justify-content-between">
+                                <p class="price"><%= results[i].price%>$</p>
+                                <p class="oldprice"><%= results[i].price%>$</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        <%}%>
+
+
+        <%}else {%>
+            <h6> no result founded for <%= q%></h6>
+
+        <%}%>
+    </div>
+
+    <%- partial('../component/pagination') %>
+
+</div>

@@ -827,7 +827,14 @@ section
 	justify-content: center;
 	align-items: center;
 	width: auto;
+	cursor: pointer;
 	height: 40px;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 500;
+	text-align: center;
+	line-height: 40px;
 	background: #fe4c50;
 	border-radius: 3px;
 	-webkit-transition: all 0.3s ease;
@@ -992,6 +999,11 @@ section
 	font-weight: 500px;
 	line-height: 30px;
 }
+.product_details_title h2{
+	font-size: 25px;
+	font-weight: 500px;
+	text-transform: capitalize;
+}
 .product_details_title p
 {
 	margin-top: 12px;
@@ -1055,96 +1067,33 @@ section
 {
 	color: #fac451;
 }
-.product_color
-{
-	margin-top: 27px;
-}
-.product_color ul
-{
-	display: inline-block;
-	margin-left: 26px;
-}
-.product_color ul li
-{
-	display: inline-block;
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	margin-right: 29px;
-	cursor: pointer;
-}
-.quantity
-{
-	width: 100%;
-	height: 40px;
-	margin-top: 23px;
-}
-.quantity_selector
-{
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	width: 132px;
-	height: 100%;
-	border: solid 1px #e5e5e5;
-	margin-left: 29px;
-}
-.quantity_selector span
-{
-	font-weight: 500;
-	color: #232530;
-}
-.plus,
-.minus
-{
-	padding-left: 14px;
-	padding-right: 14px;
-	cursor: pointer;
-}
-.plus:hover,
-.minus:hover
-{
-	color: #b5aec4;
-}
-.add_to_cart_button
-{
-	width: 160px;
-	margin-left: 19px;
-	font-size: 12px !important;
-}
-.product_favorite
-{
-	width: 40px;
-	height: 100%;
-	margin-left: 22px;
-	border: solid 1px #e5e5e5;
-	border-radius: 2px;
-	cursor: pointer;
-}
-.product_favorite:hover::after
-{
-	color: #fe4c50;
-}
-.product_favorite::after
-{
-	font-family: 'FontAwesome';
-	content:'\f08a';
-	font-size: 14px;
-}
-.product_favorite.active::after
-{
-	content:'\f004';
-	color: #fe4c50;
-}
 
-/*********************************
-7. Tabs
-*********************************/
+.form-product-option{
+	position: relative;
+	box-sizing: border-box;
+}
+.form-product-option .quantity {
+	width: 80px !important;
+	height: 32px;
+	margin: auto;
+	padding: 0px !important;
+	padding-left: 8px !important;
+}
+.form-product-option .color-v{
+	width: 80px !important;
+	padding: 0px !important;
+
+
+}
+.form-product-option label{
+	width: 25%;
+}
+.add_to_cart_button{
+	margin-top: 50px;
+}
+	/*********************************
+    7. Tabs
+    *********************************/
 
 .tabs_section_container
 {

@@ -11,7 +11,10 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const configpassport = require('./config/passport');
 const Category = require('./models/Category');
+const {cardLength} = require('./middleware/cartMiddleWare');
+const elasticsearch = require('elasticsearch');
 var app = express();
+
 
 
 // exopress middlewares
@@ -22,7 +25,6 @@ app.use('/static',express.static(path.join(__dirname, 'public')));
 app.use('/static',express.static(path.join(__dirname, 'uploads')));
 
 // session setup
-
 app.use(cookieParser());
 app.use(session({
     name: 'amazon-clone',
@@ -39,9 +41,14 @@ app.use(session({
     }
 }));
 
+// passport middlewares
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // global middlewares
 app.use(flash());
+    //  get  category
 app.use(function(req,res,next){
     Category.find({}).then(
         (category)=>{
@@ -50,11 +57,11 @@ app.use(function(req,res,next){
         }
     ).catch((err)=>next(err));
 });
+    // get cart quantity
+app.use(cardLength);
 
 
-// passport middlewares
-app.use(passport.initialize());
-app.use(passport.session());
+// search configurations
 
 
 // view engine setup
@@ -66,7 +73,7 @@ app.set('view engine', 'ejs');
 var indexRouter = require('./routes/main');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
-//app middlewares
+//app middlewares for authentication
 app.use(function(req,res,next){
     res.locals.user = req.user;
     next();
