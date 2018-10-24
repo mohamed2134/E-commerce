@@ -3,7 +3,7 @@
 
 
 
-<div class="container">
+<div class="container pt-5">
     <div class="row profile flex-row  flex-wrap  ">
         <div class="col-md-3 my-2">
             <div class="profile-sidebar">
@@ -40,9 +40,46 @@
                 <!-- END MENU -->
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="profile-content">
-                Some user related content goes here...
+        <div class="col-md-9">
+        <div class="p-3 justify-content-center"> <h3  class="border-bottom" style="color: #28a745;"> Your Orders </h3></div>
+            <div class="profile-content p-0">
+                <%if(message){%>
+                    <div class="alert-success p-3 font-weight-light text-center "><%= message%> </div>
+                <%}%>
+
+                    <% if(orders && orders.length > 0){ %>
+                <table class="table  table-responsive table-condensed w-100">
+                    <thead  class="w-100" style="width:100%;background-color:  #EBB900;">
+                    <tr>
+                        <td class="w-25">ID</td>
+                        <td >Status</td>
+                        <td class="w-25" >Order Date</td>
+                        <td >Cost</td>
+                        <td >Details</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (let i=0;i<orders.length;i++){ %>
+                        <tr>
+                            <td class="w-25"> <%= orders[i]._id%></td>
+                            <td> <%= orders[i].status%></td>
+                            <td class="w-25"> <%= orders[i].date.month%>/
+                                <%= orders[i].date.day%>/
+                                <%= orders[i].date.year%>
+                                <%= orders[i].date.hour%>:
+                                <%= orders[i].date.minute%>
+                            </td>
+                            <td> <%= orders[i].total_cost%></td>
+                            <td><a href="orders/<%= orders[i]._id%>">show </a> </td>
+                        </tr>
+
+                    <%}%>
+
+                    </tbody>
+                </table>
+                  <%}else {%>
+                  <div class="d-flex justify-content-center " > <h6 class="w-50"> Your have no Orders</h6></div>
+                <%}%>
             </div>
         </div>
     </div>

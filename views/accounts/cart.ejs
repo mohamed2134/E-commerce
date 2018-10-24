@@ -1,7 +1,10 @@
 <% layout('../layout') %>
 
 
-<section class="container cart-list">
+<section class="container cart-list mt-5">
+    <%if(message){%>
+    <div class="alert-success p-3 font-weight-light text-center "><%= message%> </div>
+        <%}%>
 <div class="table-responsive cart_info">
     <table class="table table-condensed w-100">
         <thead>
@@ -51,10 +54,11 @@
             <ul>
                 <li >Cart Total Price <span style="color: darkred"><%= cart.total %> $</span></li>
                 <li >Shipping Cost <span style="color: #1c7430">Free</span></li>
+                <li >payment method <span style="color: #1c7430">on delivery</span></li>
                 <li style="color: #28a745;font-size: 20px;"> your order will reach you in 5 days from your checkout date </li>
             </ul>
-            <a class="btn btn-default update" href="">Update</a>
-            <a class="btn btn-default check_out" href="">Check Out</a>
+
+            <a class="btn btn-default check_out" href="/check-out">Check Out</a>
         </div>
     </div>
 </section>

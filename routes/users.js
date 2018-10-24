@@ -3,6 +3,8 @@ var router = express.Router();
 let {User} = require('../models/Users');
 let Cart = require('../models/cart');
 let Product = require('../models/Product');
+let Order = require('../models/order');
+let constant = require('../config/constants');
 const {userValidation} = require('./validations/userinfo');
 const passport = require('passport');
 const sessionConfig = require('../config/session');
@@ -110,7 +112,22 @@ router.get('/Logout', function (req, res, next) {
 
 router.get('/profile', function (req, res, next) {
 
-    return res.render('accounts/profiles', {user: req.user, title: 'profile'});
+
+
+    let message = req.session.message ? req.session.message:"";
+    req.session.message = "";
+    Order.find({owner:req.user._id})
+        .then(
+            (orders)=>{
+                return res.render('accounts/profiles', {user: req.user,orders:orders,message:message, title: 'profile'});
+            }
+            ,
+            (err)=>{
+                 return next(err);
+            }
+        );
+
+
 
 });
 
@@ -201,13 +218,15 @@ router.post('/product-cart/:id', function (req, res, next) {
 
 
 router.get('/cart', (req, res, next) => {
-
+    res.locals.message ="";
     Cart.findOne({owner: req.user._id})
         .populate('items.item')
         .exec(
             function (err, cart) {
                 if (cart) {
                     console.log(cart);
+                    if(cart.items.length < 1)
+                        res.locals.message = "cart is empty";
                     res.locals.cart = cart;
                     return res.render('accounts/cart', {title: 'cart'});
                 }
@@ -218,6 +237,9 @@ router.get('/cart', (req, res, next) => {
             });
 });
 
+//*******************************************
+//**********************  remove from cart route
+//*******************************************
 
 router.get('/cart-remove/:index',(req,res,next)=>{
 
@@ -244,4 +266,107 @@ router.get('/cart-remove/:index',(req,res,next)=>{
 
 
 });
+
+//*******************************************
+//**********************  checkout cart route and save order
+//*******************************************
+
+router.get('/check-out',(req,res,next)=>{
+
+    res.locals.message = "";
+    Cart.findOne({owner: req.user._id})
+        .exec(  (err,cart)=>{
+             console.log(cart.items);
+            if(err) return next(err);
+            if(cart.items.length > 0){
+               saveOrder(cart,req,res,next);
+            }else {
+               return   res.redirect('/cart');
+            }
+
+        });
+
+});
+
+ function saveOrder(cart,req,res,next){
+     let newOrder = new Order();
+     let date = new Date();
+     newOrder.owner = req.user._id;
+     newOrder.date.year = date.getFullYear();
+     newOrder.date.month = date.getMonth()+1;
+     newOrder.date.day = date.getDate();
+     newOrder.date.hour = date.getHours();
+     newOrder.date.minute = date.getMinutes();
+     newOrder.total_cost = cart.total;
+     newOrder.status = constant.order.WAITING,
+         newOrder.items = cart.items;
+     newOrder.save().then(
+         (order)=>{
+             console.log(order);
+             cart.total = 0;
+             cart.items = [];
+             cart.save().then(
+                 (cart)=>{
+                     console.log(cart);
+                     req.session.message = "new order added";
+                     return res.redirect('/profile');
+                 },
+                 (err)=> next(err)
+             );
+
+         },
+         (err)=>{
+             return next(err);
+         }
+     );
+
+
+ }
+
+//*******************************************
+//**********************  order details
+//*******************************************
+router.get('/orders/:id',(req,res,next)=>{
+     let id = req.params.id;
+
+     Order.findOne({_id:id})
+         .populate('items.item')
+         .exec((err,order)=>{
+             console.log('**************',order);
+         if(order){
+             res.locals.order = order;
+            return res.render('accounts/order',{title:'order'});
+         }
+         if(err){
+             return next(err);
+         }
+    }
+     );
+
+
+});
+
+
+//*******************************************
+//**********************  cancel  order
+//*******************************************
+router.get('/order/cancel/:id',(req,res,next)=>{
+
+    let id= req.params.id;
+
+    Order.findByIdAndDelete(id).then(
+        (order)=>{
+           req.session.message = 'order deleted successfully';
+           return res.redirect('/profile');
+        },
+        (err)=>{
+            return next(err);
+        }
+    );
+
+
+});
+
+
+
 module.exports = router;
