@@ -3,6 +3,7 @@ var router = express.Router();
 let {User} = require('../models/Users');
 let Cart = require('../models/cart');
 let Product = require('../models/Product');
+let Review = require('../models/reviews');
 let Order = require('../models/order');
 let constant = require('../config/constants');
 const {userValidation} = require('./validations/userinfo');
@@ -16,7 +17,16 @@ router.post('/signup', function (req, res, next) {
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
-    let newUser = new User({email, password, "profile.name": name});
+    let country = req.body.country;
+    let state = req.body.state;
+    let town = req.body.town;
+    let phone = req.body.phone;
+    let newUser = new User({email, password, "profile.name": name,
+        'address.country':country,
+        'address.state':state,
+        'address.city':town,
+        'address.phone':phone
+    });
     newUser.profile.picture = newUser.gravatar();
 
     userValidation(newUser).then(
@@ -156,12 +166,15 @@ router.post('/edit-profile', function (req, res, next) {
     }
 
     if (req.body.name) req.user.profile.name = req.body.name;
-    if (req.body.address) req.user.address.address = req.body.address;
+    if (req.body.country) req.user.address.country = req.body.country;
+    if (req.body.phone) req.user.address.phone = req.body.phone;
+    if (req.body.state) req.user.address.state = req.body.state;
+    if (req.body.town) req.user.address.city = req.body.town;
 
     req.user.save().then(
         (resl) => {
             req.session.message = "successfully edit your profile";
-            return res.redirect('/edit-profile');
+            return res.redirect('/profile');
         }
     ).catch((err) => {
         return next(err);
@@ -331,6 +344,7 @@ router.get('/orders/:id',(req,res,next)=>{
 
      Order.findOne({_id:id})
          .populate('items.item')
+         .populate('owner')
          .exec((err,order)=>{
              console.log('**************',order);
          if(order){
@@ -363,6 +377,43 @@ router.get('/order/cancel/:id',(req,res,next)=>{
             return next(err);
         }
     );
+
+
+});
+
+
+//*******************************************
+//**********************  cancel  order
+//*******************************************
+router.post('/product/review/:id',(req,res,next)=> {
+
+    let productId = req.params.id;
+    let message = req.body.message;
+    let rating = req.body.rate;
+    let  name = req.body.subject;
+
+    let newReview = new Review();
+    let date = new Date();
+    newReview.owner = req.user._id;
+    newReview.productID = productId;
+    newReview.body = message;
+    newReview.rating = rating;
+    newReview.name = name;
+    newReview.date.day = date.getDate();
+    newReview.date.month = date.getMonth();
+    newReview.date.year= date.getFullYear();
+
+    console.log(newReview);
+    newReview.save().then(
+      (review)=>{
+          return res.redirect('/product/'+productId);
+      },
+      (err)=>{
+          return next(err);
+      }
+  );
+
+
 
 
 });

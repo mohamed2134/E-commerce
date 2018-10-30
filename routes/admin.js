@@ -57,8 +57,22 @@ router.post('/add-product',upload.array('image',3),(req,res,next)=>{
    let category = req.body.category;
    let  name = req.body.name;
    let price = req.body.price;
+   let discount = req.body.discount;
+   let shortdesc = req.body.shortdesc;
+   let fulldesc =req.body.fulldesc;
+   let color1 = req.body.color1;
+   let color2 = req.body.color2;
+   let color3 = req.body.color3;
+   let size = req.body.size;
    let image = req.publicUrl;
-    let product = new Product({category,name,price,image});
+   let product = new Product({category,name,price,image});
+
+    product.discount = discount;
+    product.shortDescription = shortdesc;
+    product.description = fulldesc;
+    product.colors =[color1,color2,color3];
+    product.size = size;
+
    product.save().then(
        (product)=>{
            req.flash('message','product added successfully');

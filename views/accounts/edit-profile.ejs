@@ -15,13 +15,59 @@
             <input type="text" class="form-control"  name="name" value="<%= user.profile.name %>" id="name" aria-describedby="emailHelp" placeholder="Enter name">
         </div>
         <div class="form-group">
-            <label for="address">Enter address</label>
-            <input type="test" class="form-control" id="address" name="address" value="<%= user.address.address %>" placeholder="address">
+            <label for="password">Enter password</label>
+            <input type="test" class="form-control" id="password" name="password" placeholder="New Password">
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+
+        <div class="row">
+
+            <div class="form-group col-sm-4">
+                <label  for="country">Country</label>
+                <select class="custom-select form-control" name="country" id="country">
+                    <option  value="مصر">مصر</option>
+                    <option disabled value="الكويت">الكويت</option>
+                    <option  disabled value="الاردن">الاردن</option>
+                    <option disabled value="السعوديه">السعوديه</option>
+                    <option disabled selected value="<%= user.address.country%>"><%= user.address.country%></option>
+                </select>
+
+            </div>
+            <div class="form-group col-sm-4">
+                <label  for="state">State</label>
+                <select class="custom-select form-control" name="state" id="state">
+
+                    <option value="الإسكندرية">الإسكندرية</option>
+                    <option value="الإسماعيلية">الإسماعيلية</option>
+                    <option value="البحيرة">البحيرة</option>
+                    <option value="بورسعيد">بورسعيد</option>
+                    <option value="الجيزة">الجيزة</option>
+                    <option value="الدقهلية">الدقهلية</option>
+                    <option value="دمياط">دمياط</option>
+                    <option value="السويس">السويس</option>
+                    <option value="الشرقية">الشرقية</option>
+                    <option value="الغربية">الغربية</option>
+                    <option value="الفيوم">الفيوم</option>
+                    <option  value="القاهرة">القاهرة</option>
+                    <option value="القليوبية">القليوبية</option>
+                    <option value="كفر الشيخ">كفر الشيخ</option>
+                    <option value="المنوفية "> المنوفية</option>
+                    <option selected value="<%= user.address.state%>"><%= user.address.state%></option>
+                </select>
+
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="town">City</label>
+                <input type="text" value="<%= user.address.city%>" class="form-control" id="town" name="town" placeholder="Town">
+            </div>
+
         </div>
+
+        <div class="form-group ">
+            <label for="phone">Phone</label>
+            <input type="tel" class="form-control" id="phone" value="<%= user.address.phone%>" name="phone" placeholder="New Phone">
+        </div>
+
         <button type="submit" class="btn btn-success btn-lg w-50">Edit</button>
     </form>
 

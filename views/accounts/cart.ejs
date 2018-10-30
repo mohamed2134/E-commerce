@@ -53,12 +53,17 @@
         <div class="total_area">
             <ul>
                 <li >Cart Total Price <span style="color: darkred"><%= cart.total %> $</span></li>
-                <li >Shipping Cost <span style="color: #1c7430">Free</span></li>
+                <li >Shipping Cost <span style="color: #1c7430">30 Egp</span></li>
                 <li >payment method <span style="color: #1c7430">on delivery</span></li>
+                <li >This order will deliver to your address (<%= user.address.address%>
+                    ) in your profile if you need to change your
+                    address edit your account address and make order again</li>
+
                 <li style="color: #28a745;font-size: 20px;"> your order will reach you in 5 days from your checkout date </li>
             </ul>
 
-            <a class="btn btn-default check_out" href="/check-out">Check Out</a>
+               <a class="btn btn-default check_out" href="/check-out">Check Out</a>
+
         </div>
     </div>
 </section>

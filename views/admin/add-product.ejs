@@ -4,34 +4,117 @@
 <div class="row align-items-center justify-content-center p-5 ">
     <h1>Add New Product</h1>
 </div>
-<div class="row align-items-center justify-content-center flex-column " >
+<div class="row align-items-center justify-content-center flex-column ">
     <%- partial('../component/alert') %>
     <%- partial('../component/alert-success') %>
-    <form  method="post" action="/add-product"  enctype="multipart/form-data" class="w-50">
+    <form method="post" action="/add-product" enctype="multipart/form-data" class="w-50">
 
         <div class="form-group">
             <label for="Category">Category</label>
-            <select class="form-control"  name="category" id="Category">
+            <select class="form-control" name="category" id="Category">
 
-                <%for(let i=0;i<Category.length;i++){%>
-                  <option value="<%= Category[i]._id%>"><%= Category[i].name%></option>
-                 <%};%>
+                <% for(let i = 0;i < Category.length;i++){ %>
+                    <option value="<%= Category[i]._id %>"><%= Category[i].name %></option>
+                <% }; %>
             </select>
         </div>
 
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp"
+                   placeholder="Enter Name">
         </div>
+
+
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" class="form-control"  name="price" id="price" aria-describedby="emailHelp" placeholder="Enter Price">
+            <input type="number" class="form-control" name="price" id="price" aria-describedby="emailHelp"
+                   placeholder="Enter Price">
         </div>
+
         <div class="form-group">
-            <label for="image">Image</label>
-            <input  multiple type="file" class="form-control-file" id="image" name="image" placeholder=" add image">
+            <label for="discount">Discount</label>
+            <input type="number" min="0" max="99" class="form-control" name="discount" id="discount"
+                   aria-describedby="emailHelp" placeholder="Enter Discount">
         </div>
-        <button type="submit" class="btn btn-success btn-lg w-50">Add</button>
+
+        <div class="form-group">
+            <label for="shortdes">Short Description</label>
+            <input type="text" class="form-control" name="shortdesc" id="shortdes" aria-describedby="shortdes"
+                   placeholder="Enter Description">
+            <small id="shortdes" class="form-text text-muted">
+                write description to your product in 90 charcter
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="shortdes">Full Description</label>
+            <textarea class="form-control" name="fulldesc" aria-describedby="shortdes" id="shortdes"
+                      rows="5"></textarea>
+
+            <small id="shortdes" class="form-text text-muted">
+                write description as you want
+            </small>
+        </div>
+
+        <div class="row">
+
+
+            <div class="form-group col-4">
+                <label for="color1">Color One</label>
+                <input type="text" class="form-control" name="color1" id="color1" placeholder="Color">
+            </div>
+
+            <div class="form-group col-4">
+                <label for="color2">Color Two</label>
+                <input type="text" class="form-control" name="color2" id="color2" placeholder="Color">
+            </div>
+
+            <div class="form-group col-4">
+                <label for="color3">Color Three</label>
+                <input type="text" class="form-control" name="color3" id="color3" placeholder="Color">
+            </div>
+
+
+        </div>
+
+
+        <label class="mt-1"> Avilable Size</label>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="size" value="small" id="s">
+            <label class="form-check-label" for="s">
+                small
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="size" value="medium" id="m">
+            <label class="form-check-label" for="m">
+                medium
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="size" value="large" id="l">
+            <label class="form-check-label" for="l">
+                large
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="size" value="xlarge" id="x">
+            <label class="form-check-label" for="x">
+                xlarge
+            </label>
+        </div>
+
+
+        <div class="form-group mt-5">
+            <label for="image">Image</label>
+            <input multiple type="file" class="form-control-file" id="image" name="image" placeholder=" add image">
+        </div>
+        <button type="submit" class="btn btn-success mt-2 btn-lg w-50">Add</button>
     </form>
 
 </div>

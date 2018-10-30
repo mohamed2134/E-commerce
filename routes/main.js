@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const mongooes = require('mongoose');
 let Product = require('../models/Product');
+let Review = require('../models/reviews');
 
 //config search
    ///connect to mongodb
@@ -87,8 +89,32 @@ router.get('/product/:id',(req,res,next)=>{
                     return next(err);
                 }
 
-                res.locals.product  = product[0];
-                res.render("main/product",{title:'product'});
+                Review.find({productID: id})
+                    .populate('owner')
+                    .exec(
+                        (err,Reviews)=>{
+                            if(err) return next(err);
+                           Review.aggregate([
+                                   {$match:{ productID:mongooes.Types.ObjectId(id)}},
+                                  {$group: {_id: '$productID', average: {$avg: '$rating'}}}
+                               ],
+                               (err,reslt)=>{
+
+                                   if(err) return next(err);
+                                   if(reslt.length > 0)
+                                         res.locals.average = reslt[0].average;
+                                   else
+                                       res.locals.average = 4;
+
+                                   res.locals.product  = product[0];
+                                   res.locals.review  = Reviews;
+                                   res.render("main/product",{title:'product'});
+                            }
+                           );
+
+                        }
+                    );
+
             }
         );
 });

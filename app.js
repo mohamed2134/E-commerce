@@ -81,8 +81,9 @@ app.use(function(req,res,next){
 
 //  app routes
 app.use(indexRouter);
-app.use(usersRouter);
 app.use(adminRouter);
+
+app.use(usersRouter);
 
 
 // catch 404 and forward to error handler

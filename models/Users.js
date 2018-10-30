@@ -24,11 +24,14 @@ let userSchema = new schema(
         },
         address:{
             country:String,
+            state:String,
             city:String,
+            phone:String,
             street:String,
             address:String
         }
         ,
+        role:String,// admin,author,default
         history: [
             {
                 date: Date,

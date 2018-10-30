@@ -27,14 +27,15 @@
             <div class="product_details">
                 <div class="product_details_title">
                     <h2><%= product.name %></h2>
-                    <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque
-                        diam dolor, elementum etos lobortis des mollis ut...</p>
+                    <p><%= product.shortDescription %> </p>
                 </div>
                 <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                    <span class="ti-truck"></span><span>free delivery in Egypt </span>
+                    <span class="ti-truck"></span><span>free delivery for order over 1000 Egp</span>
                 </div>
-                <div class="original_price"><%= product.price %></div>
-                <div class="product_price"><%= product.price - 424 %></div>
+                <%if(product.discount > 0){%>
+                    <div class="original_price"><%= product.price %></div>
+                    <%}%>
+                    <div class="product_price"><%= (parseFloat(product.price)-(parseFloat(product.discount)*parseFloat(product.price)/100)).toFixed(2) %></div>
                 <ul class="star_rating d-none">
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
                     <li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -48,13 +49,25 @@
                         <div class="form-group">
                             <label  class=" col-form-label">Select Color :</label>
                             <select class=" color-v form-control d-inline  form-control-sm" name="color">
-                                <option style="background-color: #0b2e13;" value="red">red</option>
+                               <% for (let i=0;i<product.colors.length;i++){ %>
+                                <option style="background-color: #0b2e13;" value="<%= product.colors[i]%>"><%= product.colors[i]%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label  class=" col-form-label">Select Size :</label>
+                            <select class=" color-v form-control d-inline  form-control-sm" name="size">
+                                <% for (let i=0;i<product.size.length;i++){ %>
+                                    <option style="background-color: #0b2e13;" value="<%= product.size[i]%>"><%= product.size[i]%></option>
+                                <%}%>
                             </select>
                         </div>
                         <div>
                             <label>Select number :</label>
                             <input type="number" class=" quantity d-inline form-control" min="1" name="quantity" value="1">
                         </div>
+                              <input type="hidden" id="rate_read_only" value="<%= average%>"/>
+                              <div class="d-inline-block pt-3 pl-0 ml-0" id="rateYoRead"></div>
                         <button class="red_button add_to_cart_button border-0" type="submit"> add to cart</button>
 
                     </div>
@@ -63,5 +76,133 @@
             </div>
 
         </div>
+
+
+
+
+
+        <!-- Tabs -->
+
+        <div class="tabs_section_container">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="tabs_container">
+                            <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
+                                <li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
+                                <li class="tab" data-active-tab="tab_2"><span>Additional Information</span></li>
+                                <li class="tab" data-active-tab="tab_3"><span>Reviews (<%= review.length%>)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+
+                        <!-- Tab Description -->
+
+                        <div id="tab_1" class="tab_container active">
+                            <div class="row">
+                                <div class="col-lg-5 desc_col">
+                                   <p> <%= product.description %> </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Tab Additional Info -->
+
+                        <div id="tab_2" class="tab_container">
+                            <div class="row">
+                                <div class="col additional_info_col">
+
+                                    <p>COLOR:<span><%= product.colors.toString().replace('[','') %></span></p>
+                                    <p>SIZE:<span><%= product.size.toString().replace('[','') %></span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Reviews -->
+
+                        <div id="tab_3" class="tab_container">
+                            <div class="row">
+
+                                <!-- User Reviews -->
+
+                                <div class="col-lg-6 reviews_col">
+
+                                    <!-- User Review -->
+                                 <% for(let i=0;i< review.length;i++){%>
+                                    <div class="user_review_container d-flex flex-column flex-sm-row">
+                                        <div class="user">
+                                            <div class="user_pic"><img src="<%= review[i].owner.profile.picture%>" style=" border-radius: 50%;  width: 100%;height: 100%;" /></div>
+                                            <div class="user_rating">
+                                                <ul class="star_rating">
+                                                <%for(let j=1;j<=5;j++){%>
+                                                      <% if(review[i].rating >= j){%>
+                                                            <li><i class="fa fa-star"  aria-hidden="true"></i></li>
+                                                       <%}else{%>
+                                                              <li><i class="fa fa-star" style="color:#CCCCCC !important;" aria-hidden="true"></i></li>
+                                                <%}%>
+                                                <%}%>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="review">
+                                            <div class="review_date"><%= review[i].date.day%> <%= review[i].date.month%> <%= review[i].date.year%></div>
+                                            <div class="user_name"><%= review[i].owner.profile.name%></div>
+                                            <p><%= review[i].body%></p>
+                                        </div>
+                                    </div>
+                                    <%}if(review.length < 1){%>
+                                    <div class="tab_title reviews_title">
+                                        <h4 style="color: #c6c8ca;border: 0px;"> No Reviews For This Product</h4>
+                                    </div>
+                                    <%}%>
+                                </div>
+
+                                <!-- Add Review -->
+
+                                <div class="col-lg-6 add_review_col">
+
+                                    <div class="add_review">
+                                        <form id="review_form" action="/product/review/<%=product._id%>"  method="post">
+                                            <div>
+                                                <h1>Add Review</h1>
+                                                <input id="review_name" class="form_input input_name" type="text" name="subject" placeholder="Subject*" required="required" data-error="Name is required.">
+                                            </div>
+                                            <div>
+                                                <label for="rateYo">Your Rating:</label>
+                                                <div class="d-inline-block" id="rateYo"></div>
+                                                <input  type="hidden"  id="rate_input" value="5" name="rate"/>
+                                                <textarea id="review_message" class="input_review" name="message"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
+                                            </div>
+                                            <div class="text-left text-sm-right">
+                                                <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>  <!-- End Review -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>

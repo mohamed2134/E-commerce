@@ -1,54 +1,77 @@
 <% layout('../layout') %>
 
 
-
 <div class="container mt-5">
+    <div id="printableArea">
+        <div class= "d-flex justify-content-center col-12"> <p style="color: black;  font-weight:400;">Order ID: <%=order._id%></p></div>
 
-    <div class="row mt-2">
-    <div class="table-responsive cart_info">
-        <table class="table table-condensed w-100">
-            <thead>
-            <tr class="cart_menu">
-                <td class="image">Item</td>
-                <td class="description"></td>
-                <td class="price">Price</td>
-                <td class="quantity">Quantity</td>
-                <td class="total">Total</td>
-                <td></td>
-            </tr>
-            </thead>
-            <tbody>
-            <% for(let i=0; i< order.items.length;i++){%>
-                <tr>
-                    <td class="cart_product">
-                        <a href="product/<%= order.items[i].item._id%>"><img src="<%= order.items[i].item.image[0]%>" alt=""></a>
-                    </td>
-                    <td class="cart_description">
-                        <h4><a href="product/<%= order.items[i].item._id%>"> <%= order.items[i].item.name%> </a></h4>
-                        <p>Web ID: 1089772</p>
-                    </td>
-                    <td class="cart_price">
-                        <p><%= order.items[i].item.price%></p>
-                    </td>
-                    <td class="cart_quantity">
-                        <div class="cart_quantity_button">
-                            <input  readonly class="cart_quantity_input" type="number" name="quantity" value="<%= order.items[i].quantity%>" autocomplete="off" size="2">
-                        </div>
-                    </td>
-                    <td class="cart_total">
-                        <p class="cart_total_price"><%= order.items[i].price%></p>
-                    </td>
-                    <td class="cart_delete">
-                        <a class="cart_quantity_delete" href="/cart-remove/<%=i%>"><i class="fa fa-times"></i></a>
-                    </td>
+        <div class="row mt-2">
+        <div class= "text-center col-12"> <h4 style="color: black;  font-weight: bolder;">Order Items</h4></div>
+
+        <div class="table-responsive cart_info ">
+            <table class="table table-condensed w-100">
+                <caption class="border-top text-center "><strong style="">Total Cost : </strong><%= order.total_cost %>
+                </caption>
+                <thead>
+                <tr class="cart_menu">
+                    <td class="image">Item</td>
+                    <td class="description"></td>
+                    <td class="price">Price</td>
+                    <td class="quantity">Quantity</td>
+                    <td class="total">Total</td>
+                    <td></td>
                 </tr>
-            <%}%>
-            </tbody>
-        </table>
-    </div>
-</div>
+                </thead>
+                <tbody>
+                <% for(let i = 0; i < order.items.length;i++){ %>
+                    <tr>
+                        <td class="cart_product">
+                            <a href="product/<%= order.items[i].item._id %>"><img
+                                        src="<%= order.items[i].item.image[0] %>" alt=""></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="product/<%= order.items[i].item._id %>"> <%= order.items[i].item.name %> </a>
+                            </h4>
+                            <p>Web ID: 1089772</p>
+                        </td>
+                        <td class="cart_price">
+                            <p><%= order.items[i].item.price %></p>
+                        </td>
+                        <td class="  cart_quantity">
 
-    <div class="row justify-content-center mt-3">
-        <a  style="color: black;" href="/order/cancel/<%=order._id%>"> Cancel Order</a>
+                            <span class=" ml-4" style="font-size: 20px;"><%= order.items[i].quantity %> </span>
+
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price"><%= order.items[i].price %></p>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="border-bottom text-center"> <h4 style="color: black; font-weight: bolder;">Customer Information</h4></div>
+   <div class="row d-flex justify-content-center">
+    <div class=" col-sm-6">
+        <div class="total_area">
+            <ul>
+                <li>Customer Name <span style="color: green"><%= order.owner.profile.name %></span></li>
+                <li>Customer Phone <span style="color: #1c7430"><%= order.owner.address.phone %></span></li>
+                <li>Customer country <span style="color: #1c7430"><%= order.owner.address.country %></span></li>
+                <li>Customer state <span style="color: #1c7430"><%= order.owner.address.state %></span></li>
+                <li>Customer city <span style="color: #1c7430"><%= order.owner.address.city %></span></li>
+                <li>Order Date <span style="color: #1c7430"><%= order.date.year %>/<%= order.date.month %>/<%= order.date.day %>/<%= order.date.hour %></span></li>
+                <li>Order Status <span style="color: #1c7430"><%= order.status %></span></li>
+                <li>Payment method <span style="color: #1c7430"><%= order.paid_method %></span></li>
+            </ul>
+        </div>
+    </div>
+   </div>
+    </div>
+    <div class="row justify-content-between mt-5">
+        <a class="button btn-warning btn-lg" style="color: black; width: 200px;" href="#" onclick="printDiv('printableArea')">Print Order</a>
+        <a class="btn btn-warning btn-lg" style="color: black; width: 200px;" href="/order/cancel/<%= order._id %>"> Cancel Order</a>
     </div>
 </div>
