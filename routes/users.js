@@ -6,9 +6,11 @@ let Product = require('../models/Product');
 let Review = require('../models/reviews');
 let Order = require('../models/order');
 let constant = require('../config/constants');
+const authMiddleware = require('../middleware/authUser');
 const {userValidation} = require('./validations/userinfo');
 const passport = require('passport');
 const sessionConfig = require('../config/session');
+
 
 
 /* Post users listing. */
@@ -92,6 +94,8 @@ router.get('/login', function (req, res, next) {
 
 router.post('/login', sessionConfig.generateID, passport.authenticate('local-login', {failureRedirect: '/login'}),
     function (req, res) {
+        if(req.user.role === 'admin')
+           return res.redirect('/admin-dashboard');
         res.redirect('/profile');
     }
 );
@@ -99,13 +103,9 @@ router.post('/login', sessionConfig.generateID, passport.authenticate('local-log
 //**********************  start of rstriction area
 //*******************************************
 
-router.use(function (req, res, next) {
-    if (!req.user) {
-        return res.redirect('/login');
-        // return next('router');
-    }
-    next();
-});
+router.use(authMiddleware.checkDefaultUser);
+
+
 //*******************************************
 //**********************  logout route
 //*******************************************
@@ -126,7 +126,7 @@ router.get('/profile', function (req, res, next) {
 
     let message = req.session.message ? req.session.message:"";
     req.session.message = "";
-    Order.find({owner:req.user._id})
+    Order.find({owner:req.user._id,status:{$ne:constant.order.CANCELED}})
         .then(
             (orders)=>{
                 return res.render('accounts/profiles', {user: req.user,orders:orders,message:message, title: 'profile'});
@@ -202,10 +202,10 @@ router.post('/product-cart/:id', function (req, res, next) {
                 if (product) {
                     cart.items.push({
                         item: product._id,
-                        price: (parseFloat(product.price) * parseInt(req.body.quantity)).toFixed(2),
+                        price: calculatePrice(product.price,product.discount,req.body.quantity),
                         quantity: parseInt(req.body.quantity)
                     });
-                    cart.total = (parseFloat(cart.total) + parseFloat(product.price) * parseFloat(req.body.quantity)).toFixed(2);
+                    cart.total = (parseFloat(cart.total) + parseFloat(calculatePrice(product.price,product.discount,req.body.quantity))).toFixed(2);
                     cart.save().then(
                         (reslt) => {
                             return res.redirect('/cart');
@@ -368,10 +368,15 @@ router.get('/order/cancel/:id',(req,res,next)=>{
 
     let id= req.params.id;
 
-    Order.findByIdAndDelete(id).then(
+    Order.findById(id).then(
         (order)=>{
-           req.session.message = 'order deleted successfully';
-           return res.redirect('/profile');
+            order.status = constant.order.CANCELED;
+            order.save((err,result)=>{
+                if(err) return next(err);
+                req.session.message = 'order deleted successfully';
+                return res.redirect('/profile');
+            });
+
         },
         (err)=>{
             return next(err);
@@ -383,7 +388,7 @@ router.get('/order/cancel/:id',(req,res,next)=>{
 
 
 //*******************************************
-//**********************  cancel  order
+//**********************  add review
 //*******************************************
 router.post('/product/review/:id',(req,res,next)=> {
 
@@ -417,6 +422,16 @@ router.post('/product/review/:id',(req,res,next)=> {
 
 
 });
+
+
+function calculatePrice(price,discount,quantity){
+
+    let disamount = (parseFloat(price)*(parseFloat(discount)/100));
+    let newprice = price - disamount;
+    let totalPrice = (newprice * quantity).toFixed(2);
+    return totalPrice;
+
+}
 
 
 

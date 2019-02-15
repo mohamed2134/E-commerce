@@ -14,12 +14,14 @@
 
                    <div class="item-footer d-flex flex-column justify-content-center p-1">
                            <p class=" name m-0"><%= products[i].name%></p>
-                           <p class=" description m-0"><%= products[i].name%>
-                            intel corei5,hdd 500,ram 8gb ,nividia 2gb,15 inc
-                           </p>
+                           <p class=" description m-0"><%= products[i].shortDescription%></p>
                            <div class="d-flex justify-content-between flex-row pt-1">
-                               <p class="price m-0 "><%= products[i].price%>$</p>
-                               <p class="oldprice m-0"><%= products[i].price%>$</p>
+                               <% if(products[i].discount > 0){%>
+                                   <p class="price m-0 "><%= (parseFloat(products[i].price)-(parseFloat(products[i].price)*products[i].discount /100)).toFixed(2) %> $</p>
+                                   <p class="oldprice m-0"><%= products[i].price%>$</p>
+                               <%}else{ %>
+                                       <p class="price m-0 "><%= products[i].price%>$</p>
+                               <%}%>
                            </div>
                        </div>
 

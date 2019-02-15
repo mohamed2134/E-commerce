@@ -36,14 +36,6 @@
                     <div class="original_price"><%= product.price %></div>
                     <%}%>
                     <div class="product_price"><%= (parseFloat(product.price)-(parseFloat(product.discount)*parseFloat(product.price)/100)).toFixed(2) %></div>
-                <ul class="star_rating d-none">
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                </ul>
-
                 <form method="post" action="/product-cart/<%= product._id %>" >
                     <div class="form-product-option   d-flex flex-column  ">
                         <div class="form-group">
@@ -67,7 +59,7 @@
                             <input type="number" class=" quantity d-inline form-control" min="1" name="quantity" value="1">
                         </div>
                               <input type="hidden" id="rate_read_only" value="<%= average%>"/>
-                              <div class="d-inline-block pt-3 pl-0 ml-0" id="rateYoRead"></div>
+                              <div class="d-inline-block pt-3 pl-0 ml-0" id="rateYoRead"></div> <span style="color:blue; "><%= average%></span>
                         <button class="red_button add_to_cart_button border-0" type="submit"> add to cart</button>
 
                     </div>

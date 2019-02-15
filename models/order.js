@@ -8,7 +8,8 @@ let orderSchema = new schema({
         month:String,
         day:String,
         hour:String,
-        minute:String
+        minute:String,
+        date:{type:Date,default:new Date()}
     },
     delivery_cost:String,
     status:String, //shiped,waiting,canceled

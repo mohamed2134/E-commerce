@@ -46,19 +46,22 @@ input ,select{
 
 .cart-logo{
     width: 56px;
-    height: 40px;
-    padding: 3px;
+    height: 44px;
     border-bottom: 1px solid transparent;
 }
 .cart-logo:hover{
-    border-bottom: 1px solid #FFC107;
     cursor: pointer;
+    border-bottom: 1px solid transparent;
+
 }
 .cart-value{
     position: absolute;
-    top: -5px;
-    left: 30px;
+    top: -8px;
+    padding: 3px;
+    left: 20px;
     color: #E01C45;
+    background-color: whitesmoke;
+    border-radius: 50%;
     font-size: 18px;
 
 }

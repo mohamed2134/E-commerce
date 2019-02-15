@@ -80,12 +80,13 @@ router.get('/about', function(req, res, next) {
      //get route by id
 router.get('/product/:id',(req,res,next)=>{
     let id = req.params.id;
-    Product.find({_id:id})
+
+    Product.findById(id)
         .populate('category')
         .exec(
             (err,product)=>{
-                if(err || (typeof product!== "undefined" && product.length<=0)) {
-                    console.log("error",err);
+                if(err || (typeof product === "undefined")) {
+                    console.log("error****************",err.message);
                     return next(err);
                 }
 
@@ -106,9 +107,10 @@ router.get('/product/:id',(req,res,next)=>{
                                    else
                                        res.locals.average = 4;
 
-                                   res.locals.product  = product[0];
+                                   res.locals.product  = product;
                                    res.locals.review  = Reviews;
-                                   res.render("main/product",{title:'product'});
+                                   console.log("**************** end of gettting product");
+                               return    res.render("main/product",{title:'product'});
                             }
                            );
 
@@ -128,6 +130,7 @@ router.get('/products/:id',(req,res,next)=>{
     Product.find({category:id})
         .skip(perPage*page)
         .limit(perPage)
+        .sort({'date':-1})
         .populate('category')
         .exec((err,products)=>{
             if(err){

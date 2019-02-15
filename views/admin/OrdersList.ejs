@@ -1,0 +1,110 @@
+<% layout('../adminLayout') %>
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+<div class="table-responsive">
+
+
+    <table id="mytable" class="table table-bordred table-striped">
+
+        <thead>
+
+        <th>Id</th>
+        <th>Status</th>
+        <th>Order Date</th>
+        <th>Cost</th>
+        <th>show</th>
+        <th>change status</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+
+
+        <% for(let i = 0; i<orders.length;i++){%>
+        <tr>
+
+            <td class="w-25"> <%= orders[i]._id%></td>
+            <td> <%= orders[i].status%></td>
+            <td class="w-25"> <%= orders[i].date.month%>/
+                <%= orders[i].date.day%>/
+                <%= orders[i].date.year%>
+                <%= orders[i].date.hour%>:
+                <%= orders[i].date.minute%>
+            </td>
+            <td> <%= orders[i].total_cost%></td>
+            <td><a href="/orders/<%= orders[i]._id%>">show </a> </td>
+            <td> <form>
+                    <select name="status">
+                        <option selected disabled>choose</option>
+                        <option value="waiting">Waiting</option>
+                        <option value="canceled">canceled</option>
+                        <option value="shiped">shiped</option>
+                    </select>
+                </form>
+            </td>
+            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+        </tr>
+
+        <%}%>
+
+
+        </tbody>
+
+    </table>
+
+    <div class="clearfix"></div>
+
+
+
+</div>
+
+
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control " type="text" placeholder="Mohsin">
+                    </div>
+                    <div class="form-group">
+
+                        <input class="form-control " type="text" placeholder="Irshad">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#mytable #checkall").click(function () {
+                if ($("#mytable #checkall").is(':checked')) {
+                    $("#mytable input[type=checkbox]").each(function () {
+                        $(this).prop("checked", true);
+                    });
+
+                } else {
+                    $("#mytable input[type=checkbox]").each(function () {
+                        $(this).prop("checked", false);
+                    });
+                }
+            });
+
+            $("[data-toggle=tooltip]").tooltip();
+        });
+
+    </script>

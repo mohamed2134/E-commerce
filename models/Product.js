@@ -12,12 +12,13 @@ let productSchema = new schema({
     shortDescription:{type:String,es_type:'text'},
     colors:[{type:String,es_type:'text'}],
     size:[{type:String,es_type:'text'}],
-    image:[{type:String,es_type:'text'}]
+    image:[{type:String,es_type:'text'}],
+    date:{type:Date,es_type:'text'}
 });
 
 productSchema.plugin(mongoosastic);
 productSchema.plugin(mongoosastic, {
-    hosts:['https://h7tvgxhfoi:77u43qq0qh@jask-1-8333156367.us-west-2.bonsaisearch.net']
+    hosts:['https://nffowxse49:3o1ytqhvh@product-index-1333858170.eu-central-1.bonsaisearch.net']
 });
 
 
