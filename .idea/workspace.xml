@@ -5,74 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de37e094-cdeb-42eb-b506-4714b1c63b96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/middleware/authUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap-table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap-theme.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap-theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap-theme.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/datepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/datepicker3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/bootstrap-datepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/chart-data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/chart.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/easypiechart-data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/easypiechart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/html5shiv.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/jquery-1.11.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/lumino.glyphs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/npm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/js/respond.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/sass/.sass-cache/deff34d1f5b7167181b556002c25068d6adc024d/styles.scssc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/sass/styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/tables/data1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/dashboard/tables/data2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/ch8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/styles/Footer-with-button-logo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/OrdersList.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/dashOrders.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/dashboard.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/adminLayout.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/chart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/chart1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/accounts/cart.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/accounts/cart.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/accounts/order.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/accounts/order.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/add-product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/add-product.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/main/product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/main/product.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/main/products.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/main/products.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/main/search-results.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/main/search-results.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/footer.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/mainNav.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/mainNav.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -393,7 +326,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="30" />
     <option name="y" value="40" />
     <option name="width" value="1210" />
@@ -529,18 +462,17 @@
       <workItem from="1540986777476" duration="24724000" />
       <workItem from="1541061539974" duration="4216000" />
       <workItem from="1544856736065" duration="1326000" />
-      <workItem from="1550215318739" duration="7020000" />
+      <workItem from="1550215318739" duration="7284000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507778000" />
+    <option name="totallyTimeSpent" value="508042000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1280" height="984" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49941927" visible="true" weight="0.16706444" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49941927" visible="true" weight="0.16706444" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5005807" side_tool="true" weight="0.17740652" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -554,7 +486,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50119334" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960223" visible="true" weight="0.32790697" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49960223" visible="true" weight="0.32790697" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
